@@ -1,7 +1,10 @@
+import Question from "./Question";
+
 const Quiz = () => {
     return (
         <div>
-          <h2>Quiz</h2>
+            <div><h1>Quiz</h1></div>
+            <Question></Question>
         </div>
       );
 };
