@@ -1,5 +1,6 @@
-import { useReducer, useState } from "react";
+import { useContext, useReducer, useState } from "react";
 import Question from "./Question";
+import { QuizContext } from "../contexts/quiz";
 
 const initialState = {
     currentQuestionIndex: 0,
@@ -17,6 +18,10 @@ const reducer =  (state, action) => {
 };
 
 const Quiz = () => {
+
+    //accessing the global property which are defined in the quiz context
+    const quizState = useContext(QuizContext);
+    console.log("quizState", quizState);
 
     //declare reducer function
     const[state, dispatch] = useReducer(reducer, initialState);
