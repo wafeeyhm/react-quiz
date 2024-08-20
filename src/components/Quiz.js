@@ -18,12 +18,14 @@ const reducer =  (state, action) => {
 
 const Quiz = () => {
 
+    //declare reducer function
     const[state, dispatch] = useReducer(reducer, initialState);
 
     console.log("render", state);
 
     const testClick = () => {
         console.log("next button have been clicked");
+        //call reducer function
         dispatch({type: "NEXT_QUESTION"});
     };
 
