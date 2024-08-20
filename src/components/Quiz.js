@@ -1,32 +1,12 @@
-import { useContext, useReducer, useState } from "react";
+import { useContext } from "react";
 import Question from "./Question";
 import { QuizContext } from "../contexts/quiz";
-
-const initialState = {
-    currentQuestionIndex: 0,
-    question: [],
-};
-
-//reducer will contain alot of business logic.
-const reducer =  (state, action) => {
-    
-    if (action.type === "NEXT_QUESTION"){
-        return {...state, currentQuestionIndex: state.currentQuestionIndex + 1};
-    }
-
-    return state;
-};
 
 const Quiz = () => {
 
     //accessing the global property which are defined in the quiz context
-    const quizState = useContext(QuizContext);
+    const [quizState, dispatch] = useContext(QuizContext);
     console.log("quizState", quizState);
-
-    //declare reducer function
-    const[state, dispatch] = useReducer(reducer, initialState);
-
-    console.log("render", state);
 
     const btnClick = () => {
         console.log("next button have been clicked");
@@ -40,8 +20,8 @@ const Quiz = () => {
                 <div className="score">
                     Question 1/8
                 </div>
-                <Question questions={state.questions} />
-                <div className="next-button" onClick={btnClick}>Next {state.currentQuestionIndex}</div>
+                <Question />
+                <div className="next-button" onClick={btnClick}>Next</div>
             </div>
         </div>
       );
