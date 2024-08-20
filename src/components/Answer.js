@@ -1,7 +1,12 @@
 const Answer = () => {
     return (
-        <div>
-          <h2>Answer</h2>
+        <div className="answer">
+            <div className="answer-letter">
+                A
+            </div>
+            <div className="answer-text">
+                Text of answer
+            </div>
         </div>
       );
 };
