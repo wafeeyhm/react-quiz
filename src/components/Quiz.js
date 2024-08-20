@@ -35,7 +35,7 @@ const Quiz = () => {
                 <div className="score">
                     Question 1/8
                 </div>
-                <Question></Question>
+                <Question questions={state.questions} />
                 <div className="next-button" onClick={btnClick}>Next {state.currentQuestionIndex}</div>
             </div>
         </div>
