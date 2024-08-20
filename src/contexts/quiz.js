@@ -1,8 +1,9 @@
 import { createContext, useReducer } from "react";
+import questions from '../data';
 
 const initialState = {
     currentQuestionIndex: 0,
-    question: [],
+    questions,
 };
 
 //reducer will contain alot of business logic.
