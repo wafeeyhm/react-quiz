@@ -4,16 +4,27 @@ import questions from '../data';
 const initialState = {
     currentQuestionIndex: 0,
     questions,
+    showResults : false,
 };
 
 //reducer will contain alot of business logic.
 const reducer =  (state, action) => {
     
     if (action.type === "NEXT_QUESTION"){
+        
+        const showResults = state.currentQuestionIndex === state.questions.length - 1;
+        const currentQuestionIndex = showResults ? state.currentQuestionIndex : state.currentQuestionIndex + 1;
+
         return {
             ...state, 
-            currentQuestionIndex: state.currentQuestionIndex + 1
+            currentQuestionIndex,
+            showResults,
         };
+    }
+
+    if (action.type === "RESTART"){
+        
+        return initialState;
     }
 
     return state;

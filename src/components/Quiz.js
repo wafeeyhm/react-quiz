@@ -8,21 +8,39 @@ const Quiz = () => {
     const [quizState, dispatch] = useContext(QuizContext);
     console.log("quizState", quizState);
 
-    const btnClick = () => {
+    const nextBtn = () => {
         console.log("next button have been clicked");
         //call reducer function
         dispatch({type: "NEXT_QUESTION"});
     };
 
+    const restartBtn = () => {
+        console.log("restart button have been clicked");
+        //call reducer function
+        dispatch({type: "RESTART"});
+    };
+
     return (
         <div className="quiz">
-            <div>
-                <div className="score">
-                    Question {quizState.currentQuestionIndex + 1}/{quizState.questions.length}
+            {quizState.showResults && (
+                <div className="results">
+                    <div className="congratulations">Congratulations</div>
+                    <div className="results-info">
+                        <div>You have completed the quiz.</div>
+                        <div>You've got 4 of {quizState.questions.length}</div>
+                    </div>
+                    <div className="next-button" onClick={restartBtn}>Restart</div>
                 </div>
-                <Question />
-                <div className="next-button" onClick={btnClick}>Next</div>
-            </div>
+            )}
+            {!quizState.showResults && (
+                <div>
+                    <div className="score">
+                        Question {quizState.currentQuestionIndex + 1}/{quizState.questions.length}
+                    </div>
+                    <Question />
+                    <div className="next-button" onClick={nextBtn}>Next</div>
+                </div>
+            )}
         </div>
       );
 };
