@@ -23,7 +23,7 @@ const Quiz = () => {
 
     console.log("render", state);
 
-    const testClick = () => {
+    const btnClick = () => {
         console.log("next button have been clicked");
         //call reducer function
         dispatch({type: "NEXT_QUESTION"});
@@ -36,7 +36,7 @@ const Quiz = () => {
                     Question 1/8
                 </div>
                 <Question></Question>
-                <div className="next-button" onClick={testClick}>Next {state.currentQuestionIndex}</div>
+                <div className="next-button" onClick={btnClick}>Next {state.currentQuestionIndex}</div>
             </div>
         </div>
       );
