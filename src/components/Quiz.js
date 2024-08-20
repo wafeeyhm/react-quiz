@@ -18,7 +18,7 @@ const Quiz = () => {
         <div className="quiz">
             <div>
                 <div className="score">
-                    Question 1/8
+                    Question {quizState.currentQuestionIndex + 1}/{quizState.questions.length}
                 </div>
                 <Question />
                 <div className="next-button" onClick={btnClick}>Next</div>
