@@ -1,6 +1,11 @@
 import Question from "./Question";
 
 const Quiz = () => {
+
+    const testClick = () => {
+        console.log("next button have been clicked");
+    };
+
     return (
         <div className="quiz">
             <div>
@@ -8,7 +13,7 @@ const Quiz = () => {
                     Question 1/8
                 </div>
                 <Question></Question>
-                <div className="next-button">Next</div>
+                <div className="next-button" onClick={testClick}>Next</div>
             </div>
         </div>
       );
