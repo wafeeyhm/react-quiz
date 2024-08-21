@@ -1,6 +1,6 @@
-const Answer = ({answerText}) => {
+const Answer = ({answerText, onSelectAnswer}) => {
     return (
-        <div className="answer">
+        <div className="answer" onClick={() => onSelectAnswer(answerText)}>
             <div className="answer-letter">
                 A
             </div>

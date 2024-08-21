@@ -7,37 +7,50 @@ const initialState = {
     questions,
     showResults : false,
     answers: shuffleAnswers(questions[0]),
+    currentAnswer: ""
 };
 
 //reducer will contain alot of business logic.
 const reducer =  (state, action) => {
     
-    if (action.type === "NEXT_QUESTION"){
-        
-        const showResults = state.currentQuestionIndex === state.questions.length - 1;
-        
-        const currentQuestionIndex = showResults 
-        ? state.currentQuestionIndex 
-        : state.currentQuestionIndex + 1;
+    console.log('reducer', state, action);
 
-        const answers = showResults 
-        ? [] 
-        : shuffleAnswers(state.questions[currentQuestionIndex]);
+    switch(action.type){
 
-        return {
-            ...state, 
-            currentQuestionIndex,
-            showResults,
-            answers,
-        };
+        case "SELECT_ANSWER" : {
+            return {
+                ...state,
+                currentAnswer: action.payload,
+            }
+        }
+        
+        case "NEXT_QUESTION" : {
+            const showResults = state.currentQuestionIndex === state.questions.length - 1;
+        
+            const currentQuestionIndex = showResults 
+            ? state.currentQuestionIndex 
+            : state.currentQuestionIndex + 1;
+
+            const answers = showResults 
+            ? [] 
+            : shuffleAnswers(state.questions[currentQuestionIndex]);
+
+            return {
+                ...state, 
+                currentQuestionIndex,
+                showResults,
+                answers,
+            };
+        }
+
+        case "RESTART" : {
+            return initialState;
+        }
+
+        default : {
+            return state;
+        }
     }
-
-    if (action.type === "RESTART"){
-        
-        return initialState;
-    }
-
-    return state;
 };
 
 export const QuizContext = createContext();

@@ -5,7 +5,7 @@ import { QuizContext } from "../contexts/quiz";
 const Question = ({ questions }) => {
 
     //accessing the global property which are defined in the quiz context
-    const [quizState] = useContext(QuizContext);
+    const [quizState, dispatch] = useContext(QuizContext);
     const currentQuestion = quizState.questions[quizState.currentQuestionIndex];
 
     console.log("Question", quizState);
@@ -17,7 +17,12 @@ const Question = ({ questions }) => {
             </div>
             <div className="answers">
                 {quizState.answers.map((answer, index) => (
-                    <Answer answerText={answer} key={index} />
+                    <Answer answerText={answer} key={index} onSelectAnswer={(answerText) => 
+                        dispatch({
+                            type: "SELECT_ANSWER", 
+                            payload: answerText
+                        })
+                    }/>
                 ))}
             </div>
         </div>
