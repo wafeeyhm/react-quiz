@@ -7,7 +7,8 @@ const initialState = {
     questions,
     showResults : false,
     answers: shuffleAnswers(questions[0]),
-    currentAnswer: ""
+    currentAnswer: "",
+    correctAnswerCount: 0,
 };
 
 //reducer will contain alot of business logic.
@@ -18,10 +19,12 @@ const reducer =  (state, action) => {
     switch(action.type){
 
         case "SELECT_ANSWER" : {
+            const correctAnswerCount = action.paylout === state.questions[state.currentQuestionIndex].correctAnswer ? state.correctAnswerCount + 1 : state.correctAnswerCount;
             return {
                 ...state,
                 currentAnswer: action.payload,
-            }
+                correctAnswerCount,
+            };
         }
         
         case "NEXT_QUESTION" : {
