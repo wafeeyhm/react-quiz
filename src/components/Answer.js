@@ -1,8 +1,26 @@
-const Answer = ({answerText, onSelectAnswer}) => {
+const Answer = ({
+    answerText, 
+    onSelectAnswer, 
+    index, 
+    currentAnswer, 
+    correctAnswer
+}) => {
+
+    const letterMapping = ['A', 'B', 'C', 'D'];
+
+    //logic to check for correct or incorrect answer
+    const isCorrectAnswer = currentAnswer && answerText === correctAnswer;
+    const isWrongAnswer = currentAnswer === answerText && currentAnswer !== correctAnswer;
+
+    //logic to define the css class for correct and incorrect answer
+    const correctAnswerClass = isCorrectAnswer ? 'correct-answer' : '';
+    const wrongAnswerClass = isWrongAnswer ? 'wrong-answer' : '';
+    const disabledClass = currentAnswer ? 'disabled-answer' : '';
+
     return (
-        <div className="answer" onClick={() => onSelectAnswer(answerText)}>
+        <div className={"answer ${correctAnswerClass} ${wrongAnswerClass} ${disabledClass}"} onClick={() => onSelectAnswer(answerText)}>
             <div className="answer-letter">
-                A
+                {letterMapping[index]}
             </div>
             <div className="answer-text">
                 {answerText}

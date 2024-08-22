@@ -40,6 +40,7 @@ const reducer =  (state, action) => {
                 currentQuestionIndex,
                 showResults,
                 answers,
+                currentAnswer: "",
             };
         }
 
